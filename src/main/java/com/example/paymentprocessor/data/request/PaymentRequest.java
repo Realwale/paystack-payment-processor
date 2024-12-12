@@ -17,7 +17,7 @@ public class PaymentRequest {
     private String email;
     
     @NotNull
-    @Min(100)
+    @Min(50)
     private BigDecimal amount;
     
     private String reference;

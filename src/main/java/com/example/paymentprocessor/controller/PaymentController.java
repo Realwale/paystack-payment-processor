@@ -8,6 +8,7 @@ import com.example.paymentprocessor.data.response.ApiResponse;
 import com.example.paymentprocessor.data.response.TransactionDTO;
 import com.example.paymentprocessor.service.PaymentService;
 import com.example.paymentprocessor.service.PayStackServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -71,5 +72,12 @@ public class PaymentController {
     @GetMapping("/banks")
     public ResponseEntity<ApiResponse<List<Map<String, Object>>>> listBanks() {
         return ResponseEntity.ok(paystackService.listBanks());
+    }
+
+    @GetMapping("/balance")
+    @Operation(summary = "Check wallet balance")
+    public ResponseEntity<ApiResponse<Map<String, Object>>> checkBalance(
+            @RequestParam @Email(message = "Please provide a valid email address") String email) {
+        return ResponseEntity.ok(paymentService.checkBalance(email));
     }
 }
