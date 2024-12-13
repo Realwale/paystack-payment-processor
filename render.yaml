@@ -9,15 +9,22 @@ services:
         value: 8080
       - key: SPRING_DATASOURCE_URL
         fromDatabase:
-          name: paystack-payment-db
+          name: paystack-postgres
           property: connectionString
       - key: SPRING_DATASOURCE_USERNAME
         fromDatabase:
-          name: paystack-payment-db
+          name: paystack-postgres
           property: user
       - key: SPRING_DATASOURCE_PASSWORD
         fromDatabase:
-          name: paystack-payment-db
+          name: paystack-postgres
           property: password
       - key: PAYSTACK_API_KEY
         value: ${PAYSTACK_API_KEY}
+
+  - type: postgres
+    name: paystack-postgres
+    ipAllowList: []
+    plan: free
+    region: oregon
+    version: "16"
