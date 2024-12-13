@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: paystack-payment-processor
+    env: docker
+    buildCommand: docker build -t paystack-payment-processor .
+    startCommand: docker run -p 8080:8080 paystack-payment-processor
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: SPRING_DATASOURCE_URL
+        fromDatabase:
+          name: paystack-payment-db
+          property: connectionString
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: paystack-payment-db
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: paystack-payment-db
+          property: password
+      - key: PAYSTACK_API_KEY
+        value: ${PAYSTACK_API_KEY}
