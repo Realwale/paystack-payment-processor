@@ -8,17 +8,11 @@ services:
       - key: PORT
         value: 8080
       - key: SPRING_DATASOURCE_URL
-        fromDatabase:
-          name: paystack-postgres
-          property: connectionString
+        value: jdbc:postgresql://dpg-ctdvp65ds78s739gc8rg-a/paystack_db
       - key: SPRING_DATASOURCE_USERNAME
-        fromDatabase:
-          name: paystack-postgres
-          property: user
+        value: paystack_db_user
       - key: SPRING_DATASOURCE_PASSWORD
-        fromDatabase:
-          name: paystack-postgres
-          property: password
+        value: alI891ZMswK1zFcLDUeVHbqa7F8HimX6
       - key: PAYSTACK_API_KEY
         value: ${PAYSTACK_API_KEY}
 
